@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <title>My second three.js app</title>
+    <style>
+      body { 
+        margin: 0; 
+        background: rgba(255,0,187,1);
+        background: -moz-linear-gradient(45deg, rgba(255,0,187,1) 0%, rgba(255,191,0,1) 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(255,0,187,1)), color-stop(100%, rgba(255,191,0,1)));
+        background: -webkit-linear-gradient(45deg, rgba(255,0,187,1) 0%, rgba(255,191,0,1) 100%);
+        background: -o-linear-gradient(45deg, rgba(255,0,187,1) 0%, rgba(255,191,0,1) 100%);
+        background: -ms-linear-gradient(45deg, rgba(255,0,187,1) 0%, rgba(255,191,0,1) 100%);
+        background: linear-gradient(45deg, rgba(255,0,187,1) 0%, rgba(255,191,0,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff00bb', endColorstr='#ffbf00', GradientType=1 );
+      }
+      canvas { width: 100%; height: 100% }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js"></script>
+    <script src="project-2/loaders/OBJLoader.js"></script>
+    <script>
+      var renderer = new THREE.WebGLRenderer({alpha: true});
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+      
+      var loader = new THREE.OBJLoader();
+      
+      var scene = new THREE.Scene();
+
+      var camera = new THREE.OrthographicCamera(-100 * (window.innerWidth / window.innerHeight), 100 * (window.innerWidth / window.innerHeight), 100, -100);
+      camera.position.set(60, 100, 100);
+      camera.lookAt(new THREE.Vector3(0, 0, 0));
+      scene.add(camera);
+
+      var cone = {
+        geometry: new THREE.ConeGeometry(5, 20, 32),
+        material: function (color) { return new THREE.MeshLambertMaterial({color: color}) },
+        mesh: function (color = 0x0000ffff) { return new THREE.Mesh(this.geometry, this.material(color))}
+      };
+
+      var cone1 = cone.mesh();
+      var cone2 = cone.mesh();
+      var cone3 = cone.mesh();
+      var cone4 = cone.mesh();
+      var cone5 = cone.mesh();
+      var cone6 = cone.mesh();
+      var cone7 = cone.mesh();
+      var cone8 = cone.mesh();
+      var cone9 = cone.mesh();
+      var cone10 = cone.mesh();
+      var cone11 = cone.mesh();
+      var cone12 = cone.mesh();
+      var cone13 = cone.mesh();
+
+      var cone1b = cone.mesh(0x00ffffff);
+      var cone2b = cone.mesh(0x00ffffff);
+      var cone3b = cone.mesh(0x00ffffff);
+      var cone4b = cone.mesh(0x00ffffff);
+      var cone5b = cone.mesh(0x00ffffff);
+      var cone6b = cone.mesh(0x00ffffff);
+      var cone7b = cone.mesh(0x00ffffff);
+      var cone8b = cone.mesh(0x00ffffff);
+      var cone9b = cone.mesh(0x00ffffff);
+      var cone10b = cone.mesh(0x00ffffff);
+      var cone11b = cone.mesh(0x00ffffff);
+      var cone12b = cone.mesh(0x00ffffff);
+      var cone13b = cone.mesh(0x00ffffff);
+
+      cone2.position.x = 10;
+      cone3.position.x = -10;
+
+      cone4.position.z = 10;
+      cone5.position.x = 10;
+      cone5.position.z = 10;
+      cone6.position.x = -10;
+      cone6.position.z = 10;
+      
+      cone7.position.z = -10;
+      cone8.position.x = 10;
+      cone8.position.z = -10;
+      cone9.position.x = -10;
+      cone9.position.z = -10;
+      
+      cone10.position.z = -20;
+      cone11.position.z = 20;
+
+      cone12.position.x = 20;
+      cone13.position.x = -20;
+
+      cone2b.position.x = 10;
+      cone3b.position.x = -10;
+
+      cone4b.position.z = 10;
+      cone5b.position.x = 10;
+      cone5b.position.z = 10;
+      cone6b.position.x = -10;
+      cone6b.position.z = 10;
+      
+      cone7b.position.z = -10;
+      cone8b.position.x = 10;
+      cone8b.position.z = -10;
+      cone9b.position.x = -10;
+      cone9b.position.z = -10;
+      
+      cone10b.position.z = -20;
+      cone11b.position.z = 20;
+
+      cone12b.position.x = 20;
+      cone13b.position.x = -20;
+
+      var coneGroup = new THREE.Group();
+      var coneGroup2 = new THREE.Group();
+
+      coneGroup.add(cone1);
+      coneGroup.add(cone2);
+      coneGroup.add(cone3);
+      coneGroup.add(cone12);
+      coneGroup.add(cone13);
+
+      coneGroup.add(cone4);
+      coneGroup.add(cone5);
+      coneGroup.add(cone6);
+      
+      coneGroup.add(cone7);
+      coneGroup.add(cone8);
+      coneGroup.add(cone9);
+      
+      coneGroup.add(cone10);
+      coneGroup.add(cone11);
+
+      coneGroup2.add(cone1b);
+      coneGroup2.add(cone2b);
+      coneGroup2.add(cone3b);
+      coneGroup2.add(cone12b);
+      coneGroup2.add(cone13b);
+      coneGroup2.add(cone4b);
+      coneGroup2.add(cone5b);
+      coneGroup2.add(cone6b);
+      coneGroup2.add(cone7b);
+      coneGroup2.add(cone8b);
+      coneGroup2.add(cone9b);
+      coneGroup2.add(cone10b);
+      coneGroup2.add(cone11b);
+
+      coneGroup2.rotation.z = Math.PI;
+
+      scene.add(coneGroup);
+      scene.add(coneGroup2);
+
+      var light = new THREE.PointLight(0xddddff);
+      light.position.set(20, 0, 45);
+      scene.add(light);
+
+      var light2 = new THREE.PointLight(0xffddff);
+      light2.position.set(-20, 0, -45);
+      scene.add(light2);
+
+      var light3 = new THREE.PointLight(0xffdddd);
+      light3.position.set(20, 0, -45);
+      scene.add(light3);
+
+      var light4 = new THREE.PointLight(0xffffff);
+      light4.position.set(-20, 0, 45);
+      scene.add(light4);
+
+      var animate = function () {
+        requestAnimationFrame( animate );
+        time = (new Date).getTime() / 100;
+        coneGroup.position.y = Math.sin(time) * 5 + 15;
+        coneGroup2.position.y = Math.sin(time) * 5 - 15;
+        coneGroup.rotation.y += 0.05;
+        coneGroup2.rotation.y += 0.05;
+        renderer.render(scene, camera);
+      };
+      animate();
+    </script>
+  </body>
+</html>
